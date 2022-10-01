@@ -261,6 +261,31 @@ df[ (df.Age.isna() == False) ].sort_values(by=['Age', 'Fare']).head()
 # 1. Affichez la dataframe
 # <br>
 
+# %% [markdown]
+# ### Question 1 :
+
+# %%
+tab = np.random.randint(0, 101, size=(4, 5))
+df = pd.DataFrame(data=tab, index=['un', 'deux', 'trois', 'quatre'], columns=['a', 'b', 'c', 'd', 'e'])
+
+# %% [markdown]
+# ### Question 2 :
+
+# %%
+df
+
+# %% [markdown]
+# ### Question 3 :
+
+# %%
+df.sort_values(by='trois', axis=1, inplace=True)
+
+# %% [markdown]
+# ### Question 4 :
+
+# %%
+df
+
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon l'index
 #
@@ -283,3 +308,19 @@ df[ (df.Age.isna() == False) ].sort_values(by=['Age', 'Fare']).head()
 # Cela peut, par exemple, servir à réordonner la dataframe du Titanic  
 # qui a été triée en place dans l'ordre des `Age`, `Fare` croissants  
 # par ordre d'index de ligne croissants
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
+
+# %%
