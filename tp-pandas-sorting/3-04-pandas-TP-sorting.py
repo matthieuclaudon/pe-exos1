@@ -147,7 +147,7 @@ plt.plot(df2.Age, 'b.');
 X = range(len(df2))
 plt.plot(X, df2.Age);
 
-# %% [markdown]
+# %% [markdown] {"tags": ["framed_cell"]}
 # ## tri des lignes *égales* au sens d'un premier critère d'une dataframe
 #
 # On reprend la dataframe d'origine
@@ -235,7 +235,8 @@ df2.head(2)
 # ### Question 7 :
 
 # %%
-df[ (df.Age.isna() == False) ].sort_values(by=['Age', 'Fare']).head()
+titanic = df[ (df.Age.isna() == False) ].sort_values(by=['Age', 'Fare'])
+titanic.head()
 
 # %% [markdown] {"tags": ["level_intermediate"]}
 # ## tri d'une dataframe selon une colonne
@@ -309,18 +310,31 @@ df
 # qui a été triée en place dans l'ordre des `Age`, `Fare` croissants  
 # par ordre d'index de ligne croissants
 
-# %%
+# %% [markdown]
+# ### Question 1 :
 
 # %%
+tab = np.random.randint(0, 101, size=(4, 5))
+df = pd.DataFrame(data=tab, index=['un', 'deux', 'trois', 'quatre'], columns=['b', 'a', 'e', 'd', 'c'])
+df
+
+# %% [markdown]
+# ### Question 2 :
 
 # %%
+df2 = df.sort_index()
+df2
+
+# %% [markdown]
+# ### Question 3 :
 
 # %%
+df2.sort_index(axis=1)
 
 # %%
+titanic.head(4)
 
 # %%
-
-# %%
+titanic.sort_index().head(4)
 
 # %%
