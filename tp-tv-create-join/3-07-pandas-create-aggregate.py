@@ -563,7 +563,13 @@ df3 = pd.read_csv('pupils3.csv')
 df3
 
 # %%
-# votre code
+# df1.merge?
+
+# %%
+df1.merge(df2)
+
+# %% tags=["framed_cell"]
+pd.concat([df1.merge(df2), df3]).set_index('name')
 
 # %% [markdown] tags=["level_intermediate"]
 # ### **exercice** - intermédiaire
