@@ -193,10 +193,6 @@ is_empty_column(df, col5)
 ensuite il ne reste qu'à calculer la liste des colonnes vides, pour la passer à `df.drop()`
 
 ```{code-cell} ipython3
-df.drop?
-```
-
-```{code-cell} ipython3
 # à vous
 
 # calculez la liste des colonnes vides
@@ -246,7 +242,7 @@ la méthode la plus simple consiste à utiliser [`Series.unique`](https://pandas
 
 ```{code-cell} ipython3
 # à vous
-unique1 = ...
+unique1 = df.cLT2FREQ.unique()
 ```
 
 ```{code-cell} ipython3
@@ -266,6 +262,14 @@ np.all(unique1[:-1] == np.arange(1, 4)) and np.isnan(unique1[-1])
 unique1.sort()
 np.all(unique1 == np.array([1., 2., 3., np.nan]))
 ```
+
+Ceci ne renvoie pas `True` car : 
+```python
+np.nan == np.nan
+-> False
+```
+
++++
 
 ### un ensemble
 
@@ -308,7 +312,7 @@ dans un premier temps on vous demande de calculer le nombre de lignes concernée
 
 ```{code-cell} ipython3
 # à vous
-nb_lines_to_clean = ...
+nb_lines_to_clean = df.cLT2FREQ.isna().sum()
 ```
 
 ```{code-cell} ipython3
@@ -338,15 +342,11 @@ expected_lines
 :hide_input: false
 
 # on recharge à tout hasard
-df = pd.read_csv("data/television.txt", sep="\t").dropna(axis='columns', how='all')
+df = pd.read_csv("television.txt", sep="\t").dropna(axis='columns', how='all')
 print(df.shape)
 ```
 
 remarquez que `df.drop` prend un paramètre optionnel `inplace` qui peut être souvent utile
-
-```{code-cell} ipython3
-#df.drop?
-```
 
 +++ {"tags": ["level_basic"]}
 
@@ -354,8 +354,8 @@ option 1: on peut utiliser `df.drop()`, l'avantage étant qu'on peut faire l'op�
 
 ```{code-cell} ipython3
 # à vous
-
-# df.drop(...)
+ligns_to_drop = [lgn for lgn in df.index.values.tolist() if np.isnan(df['cLT2FREQ'][lgn])]
+df.drop(labels=ligns_to_drop, inplace=True)
 ```
 
 ```{code-cell} ipython3
@@ -371,7 +371,7 @@ df.shape == (7386, 4)
 :hide_input: false
 
 # on recharge à tout hasard
-df = pd.read_csv("data/television.txt", sep="\t").dropna(axis='columns', how='all')
+df = pd.read_csv("television.txt", sep="\t").dropna(axis='columns', how='all')
 print(df.shape)
 ```
 
@@ -381,7 +381,7 @@ option 2: il y a plein d'autres façons de faire, on peut aussi utiliser tout si
 
 ```{code-cell} ipython3
 # à vous
-df = ...
+df = df[~(df.cLT2FREQ.isna())]
 ```
 
 ```{code-cell} ipython3
@@ -398,50 +398,22 @@ df.shape == (7386, 4)
 je vous laisse conclure le TP, il s'agit d'enregistrer nos données nettoyées dans un fichier excel
 
 ```{code-cell} ipython3
+df.head()
+```
+
+```{code-cell} ipython3
 # à vous
 
 filename = "television.xlsx"
 
-# df.to_excel?
+df.to_excel(filename)
 ```
 
 je vous laisse éventuellement vérifier votre code en rechargeant sous excel le fichier produit
 
 +++
 
-![](media/television.png)
-
-+++
-
-***
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
-
-```{code-cell} ipython3
-
-```
+Cela semble marcher dans excel. 
 
 ```{code-cell} ipython3
 
